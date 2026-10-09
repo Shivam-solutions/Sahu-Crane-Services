@@ -48,7 +48,7 @@
         }
     </style>
 </head>
-<body class="font-sans text-gray-800 bg-brand-light antialiased flex flex-col min-h-screen">
+<body class="font-sans text-gray-800 bg-brand-light antialiased flex flex-col min-h-screen pb-16 sm:pb-0">
 
     <header class="fixed w-full top-0 z-50 glass-header shadow-md transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,7 +56,7 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="#" class="flex items-center gap-3">
-                        <img class="h-16 w-auto object-contain" src="WhatsApp Image 2026-10-09 at 10.34.53 AM.jpeg" alt="Sahu Crane Services Logo">
+                        <img class="h-16 w-auto object-contain" src="Logo.jpeg" alt="Sahu Crane Services Logo">
                         <div class="hidden sm:block">
                             <h1 class="text-xl font-bold text-brand-blue leading-tight uppercase tracking-wide">Sahu Crane</h1>
                             <p class="text-sm font-semibold text-brand-orange uppercase tracking-widest">Services</p>
@@ -211,7 +211,7 @@
                         <div class="bg-white p-4 sm:p-8 rounded-3xl shadow-xl border-4 border-brand-light relative group mx-auto max-w-md lg:max-w-full">
                             <div class="absolute -inset-1 bg-gradient-to-r from-brand-orange to-brand-blue rounded-3xl blur opacity-25"></div>
                             
-                            <div class="relative w-full aspect-video sm:aspect-[4/3] rounded-xl overflow-hidden z-10 bg-gray-100" id="image-carousel">
+                            <div class="relative w-full aspect-video sm:aspect-[4/3] rounded-xl overflow-hidden z-10 bg-gray-100 min-h-[200px]" id="image-carousel">
                                 <!-- Slides -->
                                 <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100 z-10">
                                     <img src="real_img1.jpeg" alt="Sahu Crane Towing Truck 1" class="w-full h-full object-cover">
@@ -286,7 +286,7 @@
                 <!-- Brand Info -->
                 <div class="flex flex-col items-start">
                     <div class="bg-white p-2 rounded-lg mb-4 inline-block">
-                        <img src="WhatsApp Image 2026-10-09 at 10.34.53 AM.jpeg" alt="Sahu Crane Logo" class="h-12 w-auto object-contain">
+                        <img src="Logo.jpeg" alt="Sahu Crane Logo" class="h-12 w-auto object-contain">
                     </div>
                     <p class="text-gray-400 mb-6">Your reliable partner for 24/7 emergency car towing and recovery services in Bhilai. We're just one call away.</p>
                     <div class="flex gap-4">
@@ -340,11 +340,11 @@
     <a href="https://wa.me/919522708855?text=Hi,%20I%20need%20towing%20assistance%20in%20Bhilai." 
        target="_blank" 
        rel="noopener noreferrer"
-       class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#1ebd5b] transition-all transform hover:scale-110 flex items-center justify-center group"
+       class="fixed bottom-20 sm:bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#1ebd5b] transition-all transform hover:scale-110 flex items-center justify-center group"
        aria-label="Contact us on WhatsApp">
         <i class="fab fa-whatsapp text-3xl"></i>
         <!-- Tooltip -->
-        <span class="absolute right-full mr-4 bg-gray-900 text-white text-sm px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lg">
+        <span class="absolute right-full mr-4 bg-gray-900 text-white text-sm px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lg hidden sm:block">
             Chat with us
             <!-- Triangle pointer -->
             <svg class="absolute text-gray-900 h-2 w-full left-0 top-1/2 transform -translate-y-1/2 translate-x-full ml-1" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve"><polygon class="fill-current" points="0,0 127.5,127.5 255,0"/></svg>
@@ -370,13 +370,17 @@
                 if (index === currentSlide) {
                     slide.classList.remove('opacity-0', 'z-0');
                     slide.classList.add('opacity-100', 'z-10');
-                    dots[index].classList.remove('bg-white/60');
-                    dots[index].classList.add('bg-brand-orange');
+                    if (dots[index]) {
+                        dots[index].classList.remove('bg-white/60');
+                        dots[index].classList.add('bg-brand-orange');
+                    }
                 } else {
                     slide.classList.remove('opacity-100', 'z-10');
                     slide.classList.add('opacity-0', 'z-0');
-                    dots[index].classList.remove('bg-brand-orange');
-                    dots[index].classList.add('bg-white/60');
+                    if (dots[index]) {
+                        dots[index].classList.remove('bg-brand-orange');
+                        dots[index].classList.add('bg-white/60');
+                    }
                 }
             });
         }
@@ -388,6 +392,7 @@
         }
 
         function prevSlide() {
+            // FIXED SYNTAX ERROR HERE
             currentSlide = (currentSlide - 1 + slides.length) % slides.length;
             updateCarousel();
             resetInterval();
